@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysBannerMapper">
+
+    <resultMap type="SysBanner" id="SysBannerResult">
+        <id property="bId" column="b_id"/>
+        <result property="bImg" column="b_img"/>
+        <result property="bText" column="b_text"/>
+        <result property="bState" column="b_state"/>
+        <result property="createTime" column="create_time"/>
+
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+
+
+    <sql id="selectDataVo">
+        	select b_id, b_img, b_text,b_state, remark, create_time
+        	from sys_banner
+
+	</sql>
+
+
+    <select id="selectDataBy" parameterType="SysBanner" resultMap="SysBannerResult">
+        <include refid="selectDataVo"/>
+        <where>
+            <if test="bText != null and bText != ''">
+                AND b_text like concat('%', #{bText}, '%')
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="bId != null and bId != ''">
+                AND b_id = #{bId}
+            </if>
+
+        </where>
+    </select>
+
+
+
+
+
+    <insert id="insertData" parameterType="SysBanner">
+        insert into sys_banner(
+        <if test="bText != null and bText != ''">b_text,</if>
+        <if test="bImg != null and bImg != ''">b_img,</if>
+        <if test="bState != null">b_state,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        create_time
+        )values(
+        <if test="bText != null and bText != ''">#{bText},</if>
+        <if test="bImg != null and bImg != ''">#{bImg},</if>
+        <if test="bState != null">#{bState},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        sysdate()
+        )
+    </insert>
+
+    <delete id="deleteByIds" parameterType="String">
+        delete from sys_banner where b_id =#{bId}
+<!--        <foreach item="bId" collection="array" open="(" separator="," close=")">-->
+<!--            #{bId}-->
+<!--        </foreach>-->
+    </delete>
+
+
+<!--    <delete id="deleteByIds" parameterType="String">-->
+<!--        delete from sys_banner where b_id in-->
+<!--        <foreach item="bId" collection="array" open="(" separator="," close=")">-->
+<!--            #{bId}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+
+
+
+</mapper>

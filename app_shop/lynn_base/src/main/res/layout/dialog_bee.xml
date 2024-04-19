@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="15dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="警报"
+        android:textColor="@color/color_d63c3c"
+        android:textSize="26sp"/>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:src="@mipmap/tc_tips_icon"/>
+
+
+    <TextView
+        android:id="@+id/tv_bee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="警报"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/color_d63c3c"
+        android:textSize="18sp"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我知道了"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/tab_txt_d"
+        android:textSize="18sp"/>
+
+</LinearLayout>

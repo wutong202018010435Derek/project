@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysGoodsMapper">
+
+	<resultMap type="SysGoods" id="SysGoodsResult">
+		<id     property="goodsId"     column="goods_id"     />
+		<result property="goodsName"   column="goods_name"   />
+		<result property="goodsDesc"   column="goods_desc"   />
+		<result property="goodsTypeInt"   column="goods_type_int"   />
+		<result property="goodsTypeCategory"   column="goods_type_category"   />
+		<result property="goodsPrice"   column="goods_price"   />
+		<result property="goodsSellerId"   column="goods_seller_id"   />
+		<result property="goodsSellerName"   column="goods_seller_name"   />
+		<result property="goodsImg"   column="goods_img"   />
+		<result property="remark"   column="remark"   />
+		<result property="createTime"   column="create_time"   />
+		<result property="goodsState"   column="goods_state"   />
+	</resultMap>
+
+	<sql id="selectDataVo">
+		select goods_id,goods_name,goods_desc,goods_type_int,goods_type_category,goods_price,goods_seller_id,goods_seller_name,goods_img,create_time,remark,goods_state
+from sys_goods
+	</sql>
+
+
+	<insert id="insertDevice" parameterType="SysGoods">
+		insert into sys_goods(
+		<if test="goodsName != null and goodsName != ''">goods_name,</if>
+
+		<if test="goodsDesc != null and goodsDesc != ''">goods_desc,</if>
+		<if test="goodsTypeInt != null and goodsTypeInt != ''">goods_type_int,</if>
+		<if test="goodsTypeCategory != null and goodsTypeCategory != ''">goods_type_category,</if>
+		<if test="goodsPrice != null and goodsPrice != ''">goods_price,</if>
+		<if test="goodsSellerId != null and goodsSellerId != ''">goods_seller_id,</if>
+		<if test="goodsSellerName != null and goodsSellerName != ''">goods_seller_name,</if>
+		<if test="goodsImg != null and goodsImg != ''">goods_img,</if>
+		<if test="remark != null and remark != ''">remark,</if>
+		<if test="goodsState != null and goodsState != ''">goods_state,</if>
+
+		create_time
+		)values(
+		<if test="goodsName != null and goodsName != ''">#{goodsName},</if>
+		<if test="goodsDesc != null and goodsDesc != ''">#{goodsDesc},</if>
+		<if test="goodsTypeInt != null and goodsTypeInt != ''">#{goodsTypeInt},</if>
+		<if test="goodsTypeCategory != null and goodsTypeCategory != ''">#{goodsTypeCategory},</if>
+		<if test="goodsPrice != null and goodsPrice != ''">#{goodsPrice},</if>
+		<if test="goodsSellerId != null and goodsSellerId != ''">#{goodsSellerId},</if>
+		<if test="goodsSellerName != null and goodsSellerName != ''">#{goodsSellerName},</if>
+		<if test="goodsImg != null and goodsImg != ''">#{goodsImg},</if>
+		<if test="remark != null and remark != ''">#{remark},</if>
+		<if test="goodsState != null and goodsState != ''">#{goodsState},</if>
+
+
+
+		sysdate()
+		)
+	</insert>
+
+
+
+	<select id="selectDataList" parameterType="SysGoods" resultMap="SysGoodsResult">
+		<include refid="selectDataVo"/>
+		<where>
+
+<!--			<if test="goodsState != null and goodsState == 1">-->
+<!--				goods_state != #{goodsState}-->
+<!--			</if>-->
+			<!--			<if test="goodsName != null and goodsName != ''">-->
+			<!--				AND goods_name like concat('%', #{goodsName}, '%')-->
+			<!--			</if>-->
+			<if test="goodsName != null and goodsName != ''">
+				AND goods_name like concat('%', #{goodsName}, '%')
+			</if>
+
+			<!--			<if test="goodsName != null and goodsName != ''">-->
+			<!--				AND goods_name like '%'#{goodsName}'%'-->
+			<!--			</if>-->
+
+			<!--			<if test="goodsName != null and goodsName != ''">-->
+			<!--				AND goods_name like   #{goodsName}-->
+			<!--			</if>-->
+			<if test="goodsTypeInt != null and goodsTypeInt != ''">
+				AND goods_type_int = #{goodsTypeInt}
+			</if>
+			<if test="goodsTypeCategory != null and goodsTypeCategory != ''">
+				AND goods_type_category = #{goodsTypeCategory}
+			</if>
+			<if test="goodsSellerId != null and goodsSellerId != ''">
+				AND goods_seller_id = #{goodsSellerId}
+			</if>
+
+
+		</where>
+	</select>
+
+	<select id="selectDataAll" resultMap="SysGoodsResult">
+		<include refid="selectDataVo"/>
+	</select>
+
+	<select id="selectDeviceById" parameterType="Long" resultMap="SysGoodsResult">
+		<include refid="selectDataVo"/>
+		where goods_id = #{goodsId}
+	</select>
+
+	<select id="selectDataByName" parameterType="String" resultMap="SysGoodsResult">
+		<include refid="selectDataVo"/>
+		where category_name = #{categoryName}
+	</select>
+
+
+	<delete id="deleteDeviceById" parameterType="Long">
+		delete
+		from sys_goods
+		where goods_id = #{goodsId}
+	</delete>
+
+	<delete id="deleteDeviceByIds" parameterType="Long">
+		delete from sys_goods where goods_id in
+		<foreach collection="array" item="goodsId" open="(" separator="," close=")">
+			#{goodsId}
+		</foreach>
+	</delete>
+
+	<update id="updateDevice" parameterType="SysGoods">
+		update sys_goods
+		<set>
+			<if test="goodsState != null">goods_state = #{goodsState},</if>
+		</set>
+		where goods_id = #{goodsId}
+	</update>
+
+
+
+
+
+
+	
+</mapper> 

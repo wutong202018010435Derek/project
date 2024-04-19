@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysDataMapper">
+
+	<resultMap type="SysData" id="SysDataResult">
+		<id     property="dataId"     column="data_id"     />
+		<result property="dataName"   column="data_name"   />
+		<result property="dataDeviceid"   column="data_deviceid"   />
+		<result property="dataCo"     column="data_co"      />
+		<result property="dataWendu"   column="data_wendu"   />
+		<result property="dataShidu" column="data_shidu" />
+		<result property="dataLight"   column="data_light"   />
+		<result property="dataTime" column="data_time" />
+		<result property="turangTemp"   column="turang_temp"   />
+		<result property="turangShidu" column="turang_shidu" />
+		<result property="dataPh" column="data_ph" />
+	</resultMap>
+	
+	<sql id="selectDataVo">
+        select data_id, data_name, data_deviceid, data_co, data_wendu, data_shidu, data_light ,data_time,turang_temp,turang_shidu,data_ph
+		from sys_data
+    </sql>
+
+	<select id="selectSysDataList" parameterType="SysData" resultMap="SysDataResult">
+	    <include refid="selectDataVo"/>
+		<where>
+		    <if test="dataName != null and dataName != ''">
+				AND data_name like concat('%', #{dataName}, '%')
+			</if>
+			<if test="dataDeviceid != null and dataDeviceid != ''">
+				AND data_deviceid = #{dataDeviceid}
+			</if>
+
+	    </where>
+	</select>
+	
+	<select id="selectDataAll" resultMap="SysDataResult">
+		<include refid="selectDataVo"/>
+	</select>
+
+		<select id="selectDataFirst" parameterType="String" resultMap="SysDataResult">
+			<include refid="selectDataVo"/>
+			where data_deviceid = #{dataDeviceid}
+			ORDER BY data_id DESC LIMIT 1
+		</select>
+	
+
+
+ 	
+ 	<insert id="insertDataType" parameterType="SysData">
+        insert into sys_data(
+        <if test="dataName != null and dataName != ''">data_name,</if>
+        <if test="dataDeviceid != null and dataDeviceid != ''">data_deviceid,</if>
+        <if test="dataCo != null">data_co,</if>
+        <if test="dataWendu != null">data_wendu,</if>
+        <if test="dataShidu != null">data_shidu,</if>
+        <if test="dataLight != null">data_light,</if>
+		<if test="turangTemp != null">turang_temp,</if>
+		<if test="turangShidu != null">turang_shidu,</if>
+		<if test="dataPh != null">data_ph,</if>
+        data_time
+        )values(
+        <if test="dataName != null and dataName != ''">#{dataName},</if>
+        <if test="dataDeviceid != null and dataDeviceid != ''">#{dataDeviceid},</if>
+        <if test="dataCo != null">#{dataCo},</if>
+        <if test="dataWendu != null ">#{dataWendu},</if>
+        <if test="dataShidu != null ">#{dataShidu},</if>
+        <if test="dataLight != null ">#{dataLight},</if>
+		<if test="turangTemp != null ">#{turangTemp},</if>
+		<if test="turangShidu != null ">#{turangShidu},</if>
+		<if test="dataPh != null ">#{dataPh},</if>
+        sysdate()
+        )
+    </insert>
+
+
+	
+</mapper> 

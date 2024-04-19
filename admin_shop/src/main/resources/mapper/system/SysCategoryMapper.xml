@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysCategoryMapper">
+
+    <resultMap type="SysCategory" id="SysCategoryResult">
+        <id property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="remark" column="remark"/>
+
+        <result property="createTime" column="create_time"/>
+
+    </resultMap>
+
+    <sql id="selectDeviceVo">
+        select category_id,
+               category_name,
+
+               create_time,
+               remark
+
+        from sys_category
+    </sql>
+
+    <select id="selectDeviceList" parameterType="SysCategory" resultMap="SysCategoryResult">
+        <include refid="selectDeviceVo"/>
+        <where>
+            <if test="categoryName != null and categoryName != ''">
+                AND category_name like concat('%', #{categoryName}, '%')
+            </if>
+
+        </where>
+    </select>
+
+    <select id="selectDictTypeAll" resultMap="SysCategoryResult">
+        <include refid="selectDeviceVo"/>
+    </select>
+
+    <select id="selectDeviceById" parameterType="Long" resultMap="SysCategoryResult">
+        <include refid="selectDeviceVo"/>
+        where category_id = #{categoryId}
+    </select>
+
+    <select id="selectDeviceByName" parameterType="String" resultMap="SysCategoryResult">
+        <include refid="selectDeviceVo"/>
+        where category_name = #{categoryName}
+    </select>
+
+
+    <delete id="deleteDeviceById" parameterType="Long">
+        delete
+        from sys_category
+        where category_id = #{categoryId}
+    </delete>
+
+    <delete id="deleteDeviceByIds" parameterType="Long">
+        delete from sys_category where device_id in
+        <foreach collection="array" item="categoryId" open="(" separator="," close=")">
+            #{categoryId}
+        </foreach>
+    </delete>
+
+    <update id="updateDevice" parameterType="SysCategory">
+        update sys_category
+        <set>
+            <if test="categoryName != null and categoryName != ''">device_name = #{categoryName},</if>
+
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},
+
+            </if>
+            update_time = sysdate()
+        </set>
+        where category_id = #{categoryId}
+    </update>
+
+
+    <insert id="insertDevice" parameterType="SysCategory">
+        insert into sys_category(
+        <if test="categoryName != null and categoryName != ''">category_name,</if>
+
+        <if test="remark != null and remark != ''">remark,</if>
+
+
+
+        create_time
+        )values(
+        <if test="categoryName != null and categoryName != ''">#{categoryName},</if>
+
+        <if test="remark != null and remark != ''">#{remark},</if>
+
+
+
+        sysdate()
+        )
+    </insert>
+
+</mapper> 

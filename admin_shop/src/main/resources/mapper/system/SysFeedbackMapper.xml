@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysFeedbackMapper">
+
+    <resultMap type="SysFeedback" id="SysFeedbackResult">
+        <result property="fbId" column="fb_id"/>
+        <result property="fbTitle" column="fb_title"/>
+        <result property="fbContent" column="fb_content"/>
+        <result property="fbUserId" column="fb_user_id"/>
+        <result property="fbType" column="fb_type"/>
+
+        <result property="fbRemark" column="fb_remark"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="SysFeedbackVo">
+        select fb_id,
+               fb_title,
+               fb_content,
+               fb_user_id,
+               fb_remark,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               fb_type
+        from sys_feedback
+    </sql>
+
+    <select id="selectById" parameterType="Long" resultMap="SysFeedbackResult">
+        <include refid="SysFeedbackVo"/>
+        where fb_id = #{fbId}
+    </select>
+
+    <select id="selectList" parameterType="SysFeedback" resultMap="SysFeedbackResult">
+        <include refid="SysFeedbackVo"/>
+        <where>
+            <if test="fbTitle != null and fbTitle != ''">
+                AND fb_title like concat('%', #{fbTitle}, '%')
+            </if>
+            <if test="fbContent != null and fbContent != ''">
+                AND fb_content = #{fb_content}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                AND create_by like concat('%', #{createBy}, '%')
+            </if>
+            <if test="fbType != null and fbType != 0">
+                AND fb_type = #{fbType}
+            </if>
+
+            <if test="fbUserId != null and fbUserId != 0">
+                AND fb_user_id = #{fbUserId}
+            </if>
+
+
+        </where>
+    </select>
+
+    <insert id="insertFeedback" parameterType="SysFeedback">
+        insert into sys_feedback (
+        <if test="fbTitle != null and fbTitle != '' ">fb_title,</if>
+        <if test="fbContent != null and fbContent != '' ">fb_content,</if>
+        <if test="fbUserId != null and fbUserId != '' ">fb_user_id,</if>
+        <if test="fbRemark != null and fbRemark != '' ">fb_remark,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="fbType != null and fbType != 0">fb_type,</if>
+
+        create_time
+        )values(
+        <if test="fbTitle != null and fbTitle != ''">#{fbTitle},</if>
+        <if test="fbContent != null and fbContent != ''">#{fbContent},</if>
+        <if test="fbUserId != null and fbUserId != ''">#{fbUserId},</if>
+        <if test="fbRemark != null and fbRemark != ''">#{fbRemark},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="fbType != null and fbType != ''">#{fbType},</if>
+        sysdate()
+        )
+    </insert>
+
+    <update id="updateFeedback" parameterType="SysFeedback">
+        update sys_feedback
+        <set>
+            <if test="fbTitle != null and fbTitle != ''">fb_title = #{fbTitle},</if>
+            <if test="fbContent != null and fbContent != ''">fb_content = #{fbContent},</if>
+            <if test="fbUserId != null">fb_user_id = #{fbUserId},</if>
+            <if test="fbRemark != null and fbRemark != ''">fb_remark = #{fbRemark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where fb_id = #{fbId}
+    </update>
+
+    <delete id="deleteFeedbackByIds" parameterType="String">
+        delete from sys_feedback where fb_id in
+        <foreach item="fbId" collection="array" open="(" separator="," close=")">
+            #{fbId}
+        </foreach>
+    </delete>
+
+</mapper>

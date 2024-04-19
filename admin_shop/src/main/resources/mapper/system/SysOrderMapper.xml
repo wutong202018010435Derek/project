@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysOrderMapper">
+
+	<resultMap type="OrderBean" id="OrderBeanResult">
+		<id     property="oId"     column="o_id"     />
+		<result property="oGoodsname"   column="o_goodsname"/>
+		<result property="oGoodsimg"   column="o_goodsimg"/>
+		<result property="oGoodsprice"   column="o_goodsprice"/>
+		<result property="oGoodsnum"   column="o_goodsnum"/>
+		<result property="oMoney"   column="o_money"/>
+		<result property="oBuyid"   column="o_buyid"/>
+		<result property="oSellerid"   column="o_sellerid"/>
+		<result property="oAddress"   column="o_address"/>
+		<result property="oState"   column="o_state"/>
+		<result property="oComment"   column="o_comment"/>
+		<result property="oGoodsid"   column="o_goodsid"/>
+		<result property="remark"   column="remark"/>
+		<result property="createTime"   column="create_time"/>
+	</resultMap>
+
+
+	
+	<sql id="selectDataVo">
+        select o_id, o_goodsname, o_goodsimg, o_goodsprice, o_goodsnum, o_money, o_buyid, o_sellerid, o_address, o_state, o_comment, o_goodsid,remark,create_time
+		from sys_order
+    </sql>
+	<insert id="insertData" parameterType="OrderBean" useGeneratedKeys="true" keyProperty="oId">
+		insert into sys_order(
+		<if test="oId != null and oId != 0">o_id,</if>
+		<if test="oGoodsname != null and oGoodsname != ''">o_goodsname,</if>
+		<if test="oGoodsimg != null and oGoodsimg != ''">o_goodsimg,</if>
+		<if test="oGoodsprice != null and oGoodsprice != ''">o_goodsprice,</if>
+		<if test="oGoodsnum != null and oGoodsnum != ''">o_goodsnum,</if>
+		<if test="oMoney != null and oMoney != ''">o_money,</if>
+		<if test="oBuyid != null and oBuyid != ''">o_buyid,</if>
+		<if test="oSellerid != null and oSellerid != ''">o_sellerid,</if>
+		<if test="oAddress != null and oAddress != ''">o_address,</if>
+		<if test="oState != null and oState != ''">o_state,</if>
+		<if test="oComment != null and oComment != ''">o_comment,</if>
+		<if test="oGoodsid != null and oGoodsid != ''">o_goodsid,</if>
+		<if test="remark != null and remark != ''">remark,</if>
+		create_time
+		)values(
+		<if test="oId != null and oId != ''">#{oId},</if>
+		<if test="oGoodsname != null and oGoodsname != ''">#{oGoodsname},</if>
+		<if test="oGoodsimg != null and oGoodsimg != ''">#{oGoodsimg},</if>
+		<if test="oGoodsprice != null and oGoodsprice != ''">#{oGoodsprice},</if>
+		<if test="oGoodsnum != null and oGoodsnum != ''">#{oGoodsnum},</if>
+		<if test="oMoney != null and oMoney != ''">#{oMoney},</if>
+		<if test="oBuyid != null and oBuyid != ''">#{oBuyid},</if>
+		<if test="oSellerid != null and oSellerid != ''">#{oSellerid},</if>
+
+		<if test="oAddress != null and oAddress != ''">#{oAddress},</if>
+		<if test="oState != null and oState != ''">#{oState},</if>
+		<if test="oComment != null and oComment != ''">#{oComment},</if>
+		<if test="oGoodsid != null and oGoodsid != ''">#{oGoodsid},</if>
+
+		<if test="remark != null and remark != ''">#{remark},</if>
+		sysdate()
+		)
+	</insert>
+
+
+
+	<select id="selectList" parameterType="OrderBean" resultMap="OrderBeanResult">
+        <include refid="selectDataVo"/>
+        <where>
+            <if test="oBuyid != null and oBuyid != ''">
+                AND o_buyid = #{oBuyid}
+            </if>
+            <if test="oSellerid != null and oSellerid != 0">
+                AND o_sellerid = #{oSellerid}
+            </if>
+			<if test="oGoodsid != null and oGoodsid != 0">
+				AND o_goodsid = #{oGoodsid}
+			</if>
+            <if test="oId != null and oId != 0">
+                AND o_id = #{oId}
+            </if>
+
+        </where>
+    </select>
+
+	<select id="selectDataById" parameterType="Long" resultMap="OrderBeanResult">
+		<include refid="selectDataVo"/>
+		where o_id = #{oId}
+	</select>
+
+
+
+	<delete id="deleteDataByIds" parameterType="String">
+		delete from sys_order where o_id in
+		<foreach item="oId" collection="array" open="(" separator="," close=")">
+			#{oId}
+		</foreach>
+	</delete>
+
+	<update id="updateData" parameterType="OrderBean">
+		update sys_order
+		<set>
+			<if test="oState != null">o_state = #{oState},</if>
+			<if test="oComment != null and oComment != ''">o_comment = #{oComment},</if>
+
+
+		</set>
+		where o_id = #{oId}
+	</update>
+
+
+	
+</mapper> 

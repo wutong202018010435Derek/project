@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="string_type">
+        <item>Buyer</item>
+        <item>Seller</item>
+
+    </string-array>
+
+
+</resources>

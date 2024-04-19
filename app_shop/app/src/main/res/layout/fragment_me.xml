@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alert_blue"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alpha="1"
+            android:background="@color/transparent"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Personal Center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/iv_img"
+                    android:layout_width="78dp"
+                    android:layout_height="78dp"
+                    android:src="@mipmap/icon_user" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="9dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_app_set"
+                    style="@style/aty_setting_ll">
+
+
+                    <TextView
+                        style="@style/aty_setting_tv_left"
+                        android:text="My Info" />
+
+                    <TextView style="@style/aty_setting_weight" />
+
+
+                    <ImageView style="@style/aty_setting_right_iv" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_F2F2F2" />
+
+                <LinearLayout
+                    android:id="@+id/ll_app_data"
+                    style="@style/aty_setting_ll">
+
+
+                    <TextView
+                        style="@style/aty_setting_tv_left"
+                        android:text="My Address" />
+
+                    <TextView style="@style/aty_setting_weight" />
+
+
+                    <ImageView style="@style/aty_setting_right_iv" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_F2F2F2" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_result"
+                    style="@style/aty_setting_ll"
+                    android:visibility="visible">
+
+
+                    <TextView
+                        style="@style/aty_setting_tv_left"
+                        android:text="My Order" />
+
+                    <TextView style="@style/aty_setting_weight" />
+
+
+                    <ImageView style="@style/aty_setting_right_iv" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_F2F2F2" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_contact"
+                    style="@style/aty_setting_ll"
+                    android:visibility="visible">
+
+                    <TextView
+                        style="@style/aty_setting_tv_left"
+                        android:text="My Collect" />
+
+                    <TextView style="@style/aty_setting_weight" />
+
+
+                    <ImageView style="@style/aty_setting_right_iv" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/color_F2F2F2"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_exit"
+                    android:text="Exit Login"
+                    style="@style/shape_btn_bg" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

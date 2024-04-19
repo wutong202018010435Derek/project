@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('banner')"/>
+    <th:block th:include="include :: layout-latest-css"/>
+    <th:block th:include="include :: ztree-css"/>
+
+    <style>
+        /*.custom-file-upload {*/
+        /*	display: inline-block;*/
+        /*	background-color: #007fff;*/
+        /*	color: #fff;*/
+        /*	border-radius: 4px;*/
+        /*	border: none;*/
+        /*	font-size: 16px;*/
+        /*	line-height: 40px;*/
+        /*	padding: 0 20px;*/
+        /*	cursor: pointer;*/
+        /*}*/
+        /*.custom-file-upload:before {*/
+        /*	content: "\f093";*/
+        /*	font-family: FontAwesome;*/
+        /*	margin-right: 10px;*/
+        /*}*/
+        /*.custom-file-upload:hover {*/
+        /*	background-color: #0059b3;*/
+        /*}*/
+        /*.custom-file-upload:active {*/
+        /*	background-color: #0059b3;*/
+        /*	transform: translateY(2px);*/
+        /*}*/
+        /*.custom-file-upload input[type="file"] {*/
+        /*	display: none;*/
+        /*}*/
+
+        .input-button {
+            display: inline-block;
+            padding: 6px 10px;
+            background-color: #1E9FFF;
+            border: 1px solid #1E9FFF;
+            border-radius: 3px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body class="gray-bg">
+
+
+<div class="ui-layout-center">
+    <div class="container-div">
+        <div class="row">
+            <!--            -->
+            <form action="bannerAdd" method="post" enctype="multipart/form-data" target="form" id="formSubmit">
+                <p>content：<input name="remark" style="display: none;"/></p>
+                <p>content：<input name="bText"/></p>
+
+                <span>
+                    <label for="pic" class="input-button" title="Select Img file">Click select</label>
+                    <input id="pic" type="file" style="display: none;" name="pic">
+                </span>
+                <span id="fileName"></span>
+
+                <!--					<p>Banner-img：<input class="change" name="pic" type="file" value="select file" /></p>-->
+                <p><input type="submit" value="save"/></p>
+
+            </form>
+            <iframe name="form" id="form" style="display:none"></iframe>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: layout-latest-js"/>
+<th:block th:include="include :: ztree-js"/>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.min.js"></script>
+
+<script th:inline="javascript">
+
+    const myImgEL = document.getElementById('pic');
+    const fileNameEL = document.getElementById('fileName');
+    let addid = '';
+
+    myImgEL.addEventListener('change', (event) => {
+        // event.target.value的值打印是C:\fakepath\head.jpg
+        // var name = event.target.value.split('\\')[2];	// 这种方式也可以
+        // console.log(name);
+        const fileName = event.target.value.match(/[^\\|/]*$/)[0];
+        console.log(fileName)
+        fileNameEL.innerHTML = fileName;
+        addid = fileName + new Date().getTime();
+        $('#remark').val(addid);
+    });
+    var prefix = ctx + "system/banner";
+
+    var prefix2 = ctx + "app";
+
+
+    $('#formSubmit').submit(function (event) {
+
+        //首先验证文件格式
+        var fileName = $(this).find("input[name=file]").val();
+        if (fileName === '') {
+            alert('please select file');
+            return;
+        }
+        // mulitipart form,如文件上传类
+        var formData = new FormData(this);
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: prefix + "/bannerAdd",
+            data: formData,
+            dataType: "JSON",
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                toQuery(fileName)
+                // console.log(data)
+                // if (data.success) {
+                //     layer.alert("上传成功")
+                // } else {
+                //     layer.alert(data.error)
+                // }
+
+                window.location.href = prefix;
+
+            }
+        });
+        return false;
+    });
+
+    function toQuery(fileName) {
+
+        const inputElement = document.getElementsByName('bText');
+        const inputValue = inputElement.value;
+        var banner = {'remark': addid, 'bText': inputValue}
+        $.ajax({
+            async: false,
+
+            url: prefix2 + "/queryBanner",
+            data: banner,
+
+
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                console.log(JSON.stringify(data) + "  测试")
+                if (data.code == 200){
+                    window.location.href = prefix;
+                }else {
+                    alert("fail")
+                }
+
+
+            }
+        });
+    }
+
+
+</script>
+</body>
+
+</html>

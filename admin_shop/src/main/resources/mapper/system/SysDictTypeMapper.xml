@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysDictTypeMapper">
+
+    <resultMap type="SysDictType" id="SysDictTypeResult">
+        <id property="dictId" column="dict_id"/>
+        <result property="dictName" column="dict_name"/>
+        <result property="dictType" column="dict_type"/>
+        <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="dictMqtt" column="dict_mqtt"/>
+        <result property="tempMax" column="temp_max"/>
+        <result property="tempMin" column="temp_min"/>
+        <result property="humMax" column="hum_max"/>
+        <result property="humMin" column="hum_min"/>
+        <result property="carbonMax" column="carbon_max"/>
+        <result property="carbonMin" column="carbon_min"/>
+        <result property="lightMax" column="light_max"/>
+        <result property="lightMin" column="light_min"/>
+    </resultMap>
+
+    <sql id="selectDictTypeVo">
+        select dict_id,
+               dict_name,
+               dict_type,
+               status,
+               create_by,
+               create_time,
+               remark,
+               dict_mqtt
+        from sys_dict_type
+    </sql>
+
+    <select id="selectDictTypeList" parameterType="SysDictType" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+        <where>
+            <if test="dictName != null and dictName != ''">
+                AND dict_name like concat('%', #{dictName}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="dictType != null and dictType != ''">
+                AND dict_type like concat('%', #{dictType}, '%')
+            </if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectDictTypeAll" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+    </select>
+
+    <select id="selectDictTypeById" parameterType="Long" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+        where dict_id = #{dictId}
+    </select>
+
+    <select id="selectDictTypeByType" parameterType="String" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+        where dict_type = #{dictType}
+    </select>
+
+    <select id="selectDictTypeByMqtt" parameterType="String" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+        where dict_mqtt = #{dictMqtt}
+    </select>
+
+    <select id="checkDictTypeUnique" parameterType="String" resultMap="SysDictTypeResult">
+        <include refid="selectDictTypeVo"/>
+        where dict_type = #{dictType} limit 1
+    </select>
+
+    <delete id="deleteDictTypeById" parameterType="Long">
+        delete
+        from sys_dict_type
+        where dict_id = #{dictId}
+    </delete>
+
+    <delete id="deleteDictTypeByIds" parameterType="Long">
+        delete from sys_dict_type where dict_id in
+        <foreach collection="array" item="dictId" open="(" separator="," close=")">
+            #{dictId}
+        </foreach>
+    </delete>
+
+    <update id="updateDictType" parameterType="SysDictType">
+        update sys_dict_type
+        <set>
+            <if test="dictName != null and dictName != ''">dict_name = #{dictName},</if>
+            <if test="dictType != null and dictType != ''">dict_type = #{dictType},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},
+                <if test="tempMax != null and tempMax != ''">temp_max =#{tempMax},</if>
+                <if test="tempMin != null and tempMin != ''">temp_min =#{tempMin},</if>
+                <if test="humMax != null and humMax != ''">hum_max =#{humMax},</if>
+                <if test="humMin != null and humMin != ''">hum_min =#{humMin},</if>
+                <if test="carbonMax != null and carbonMax != ''">carbon_max =#{carbonMax},</if>
+                <if test="carbonMin != null and carbonMin != ''">carbon_min =#{carbonMin},</if>
+                <if test="lightMax != null and lightMax != ''">light_max =#{lightMax},</if>
+                <if test="lightMin != null and lightMin != ''">light_min =#{lightMin},</if>
+            </if>
+            update_time = sysdate()
+        </set>
+        where dict_id = #{dictId}
+    </update>
+
+
+    <insert id="insertDictType" parameterType="SysDictType">
+        insert into sys_dict_type(
+        <if test="dictName != null and dictName != ''">dict_name,</if>
+        <if test="dictType != null and dictType != ''">dict_type,</if>
+        <if test="status != null">status,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="dictMqtt != null and dictMqtt != ''">dict_mqtt,</if>
+        <if test="tempMax != null and tempMax != ''">temp_max,</if>
+        <if test="tempMin != null and tempMin != ''">temp_min,</if>
+        <if test="humMax != null and humMax != ''">hum_max,</if>
+        <if test="humMin != null and humMin != ''">hum_min,</if>
+        <if test="carbonMax != null and carbonMax != ''">carbon_max,</if>
+        <if test="carbonMin != null and carbonMin != ''">carbon_min,</if>
+        <if test="lightMax != null and lightMax != ''">light_max,</if>
+        <if test="lightMin != null and lightMin != ''">light_min,</if>
+        create_time
+        )values(
+        <if test="dictName != null and dictName != ''">#{dictName},</if>
+        <if test="dictType != null and dictType != ''">#{dictType},</if>
+        <if test="status != null">#{status},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="dictMqtt != null and dictMqtt != ''">#{dictMqtt},</if>
+        <if test="tempMax != null and tempMax != ''">#{tempMax},</if>
+        <if test="tempMin != null and tempMin != ''">#{tempMin},</if>
+        <if test="humMax != null and humMax != ''">#{humMax},</if>
+        <if test="humMin != null and humMin != ''">#{humMin},</if>
+        <if test="carbonMax != null and carbonMax != ''">#{carbonMax},</if>
+        <if test="carbonMin != null and carbonMin != ''">#{carbonMin},</if>
+        <if test="lightMax != null and lightMax != ''">#{lightMax},</if>
+        <if test="lightMin != null and lightMin != ''">#{lightMin},</if>
+        sysdate()
+        )
+    </insert>
+
+</mapper> 

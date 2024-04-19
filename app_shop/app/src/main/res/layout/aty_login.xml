@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/loginbg"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:background="#272521" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/app_logo" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="Shopping App"
+        android:textColor="@color/color_323"
+        android:textSize="18sp">
+
+    </TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/shape_login_input_bg"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account:"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@color/transparent"
+            android:hint="Please input account"
+            android:text="123"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="12dp"
+
+
+        android:background="@drawable/shape_login_input_bg"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password:"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/etPsw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@color/transparent"
+            android:hint="Please input password"
+            android:text="123"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+        </EditText>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+
+        <!--    <com.stu.clothes.views.ShadowContainer-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="50dp"-->
+        <!--        android:layout_marginLeft="7dp"-->
+        <!--        -->
+        <!--        android:layout_marginRight="7dp"-->
+        <!--        app:containerCornerRadius="5dp"-->
+        <!--        app:containerDeltaLength="5dp"-->
+        <!--        app:containerShadowColor="#45ff7e59"-->
+        <!--       -->
+        <!--        app:containerShadowRadius="5dp">-->
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_login_input_bg"
+            android:padding="10dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!--    </com.stu.clothes.views.ShadowContainer>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/btn_get_password"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:text="找回密码"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="管理员"
+
+        android:visibility="gone" />
+
+</LinearLayout>

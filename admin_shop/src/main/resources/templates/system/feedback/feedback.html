@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('攻略')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+
+
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('system:feedback:edit')}]];
+    var detailFlag = [[${@permission.hasPermi('system:feedback:detail')}]];
+    var removeFlag = [[${@permission.hasPermi('system:notice:remove')}]];
+    var types = [[${@dict.getType('sys_notice_type')}]];
+    var datas = [[${@dict.getType('sys_notice_status')}]];
+    var prefix = ctx + "system/feedback";
+
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            detailUrl: prefix + "/detail/{id}",
+            // editFlag = [[${@permission.hasPermi('system:feedback:edit')}]];
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            modalName: "攻略",
+            columns: [
+                //     {
+                //     checkbox: true
+                // },
+                {
+                    title: "序号",
+                    formatter: function (value, row, index) {
+                        return $.table.serialNumber(index);
+                    }
+                },
+                {
+                    field: 'fbTitle',
+                    title: '标题'
+                },
+                {
+                    field: 'fbContent',
+                    title: '内容'
+                },
+                // {
+                //     field: 'noticeType',
+                //     title: '公告类型',
+                //     align: 'center',
+                //     formatter: function(value, row, index) {
+                //     	return $.table.selectDictLabel(types, value);
+                //     }
+                // },
+                // {
+                //     field: 'status',
+                //     title: '状态',
+                //     align: 'center',
+                //     formatter: function(value, row, index) {
+                //     	return $.table.selectDictLabel(datas, value);
+                //     }
+                // },
+                // {
+                //     field: 'createBy',
+                //     title: '反馈人'
+                // },
+                // {
+                //     field: 'createTime',
+                //     title: '创建时间',
+                //     sortable: true
+                // },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        // actions.push('<a class="btn btn-success btn-xs ' + detailFlag + '" href="javascript:void(0)" onclick="$.operate.editFull(\'' + row.fbId + '\')"><i class="fa fa-edit"></i>查看</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + detailFlag + '" href="javascript:void(0)" onclick="$.operate.detail(\'' + row.fbId + '\')"><i class="fa fa-edit"></i>查看</a> ');
+
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.fbId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

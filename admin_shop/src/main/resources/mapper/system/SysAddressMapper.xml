@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysAddressMapper">
+
+	<resultMap type="SysAddress" id="SysAddressResult">
+		<id     property="aId"     column="a_id"     />
+		<result property="aProvice"   column="a_provice"   />
+		<result property="aCity"   column="a_city"   />
+		<result property="aArea"   column="a_area"   />
+		<result property="aStreet"   column="a_street"   />
+		<result property="aAddress"   column="a_address"   />
+		<result property="aConsignee"   column="a_consignee"   />
+		<result property="aPhone"   column="a_phone"   />
+		<result property="aUserId"   column="a_user_id"   />
+
+		<result property="remark"   column="remark"   />
+		<result property="createTime"   column="create_time"   />
+	</resultMap>
+
+	<sql id="selectDataVo">
+		select a_id,a_provice,a_city,a_area,a_street,a_address,a_consignee,a_phone,a_user_id,create_time,remark
+from sys_address
+	</sql>
+
+
+	<insert id="insertData" parameterType="SysAddress">
+		insert into sys_address(
+		<if test="aProvice != null and aProvice != ''">a_provice,</if>
+		<if test="aCity != null and aCity != ''">a_city,</if>
+		<if test="aArea != null and aArea != ''">a_area,</if>
+		<if test="aStreet != null and aStreet != ''">a_street,</if>
+		<if test="aAddress != null and aAddress != ''">a_address,</if>
+		<if test="aConsignee != null and aConsignee != ''">a_consignee,</if>
+		<if test="aPhone != null and aPhone != ''">a_phone,</if>
+		<if test="aUserId != null and aUserId != ''">a_user_id,</if>
+
+		<if test="remark != null and remark != ''">remark,</if>
+
+		create_time
+		)values(
+		<if test="aProvice != null and aProvice != ''">#{aProvice},</if>
+		<if test="aCity != null and aCity != ''">#{aCity},</if>
+		<if test="aArea != null and aArea != ''">#{aArea},</if>
+		<if test="aStreet != null and aStreet != ''">#{aStreet},</if>
+		<if test="aAddress != null and aAddress != ''">#{aAddress},</if>
+		<if test="aConsignee != null and aConsignee != ''">#{aConsignee},</if>
+		<if test="aPhone != null and aPhone != ''">#{aPhone},</if>
+		<if test="aUserId != null and aUserId != ''">#{aUserId},</if>
+		<if test="remark != null and remark != ''">#{remark},</if>
+
+
+
+		sysdate()
+		)
+	</insert>
+
+
+
+	<select id="selectDataList" parameterType="SysAddress" resultMap="SysAddressResult">
+		<include refid="selectDataVo"/>
+		<where>
+			<if test="aProvice != null and aProvice != ''">
+				AND a_provice like concat('%', #{aProvice}, '%')
+			</if>
+			<if test="aUserId != null and aUserId != ''">
+				AND a_user_id = #{aUserId}
+			</if>
+<!--			<if test="goodsTypeCategory != null and goodsTypeCategory != ''">-->
+<!--				AND goods_type_category = #{goodsTypeCategory}-->
+<!--			</if>-->
+<!--			<if test="goodsSellerId != null and goodsSellerId != ''">-->
+<!--				AND goods_seller_id = #{goodsSellerId}-->
+<!--			</if>-->
+
+		</where>
+	</select>
+
+	<select id="selectDataAll" resultMap="SysAddressResult">
+		<include refid="selectDataVo"/>
+	</select>
+
+	<select id="selectDataById" parameterType="Long" resultMap="SysAddressResult">
+		<include refid="selectDataVo"/>
+		where a_id = #{aId}
+	</select>
+
+
+
+
+	<delete id="deleteDataById" parameterType="Long">
+		delete
+		from sys_address
+		where a_id = #{aId}
+	</delete>
+
+	<delete id="deleteDataByIds" parameterType="Long">
+		delete from sys_address where a_id = #{aId}
+<!--		                                  in-->
+<!--		<foreach collection="array" item="categoryId" open="(" separator="," close=")">-->
+<!--			#{aId}-->
+<!--		</foreach>-->
+	</delete>
+
+	<update id="updateDevice" parameterType="SysAddress">
+<!--		update sys_address-->
+<!--		<set>-->
+<!--			<if test="categoryName != null and categoryName != ''">device_name = #{categoryName},</if>-->
+
+<!--			<if test="remark != null">remark = #{remark},</if>-->
+<!--			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},-->
+
+<!--			</if>-->
+<!--			update_time = sysdate()-->
+<!--		</set>-->
+<!--		where category_id = #{categoryId}-->
+	</update>
+
+
+
+
+
+
+	
+</mapper> 

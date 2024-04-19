@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <com.lynn.base.view.AppTitleLayout
+        android:id="@+id/app_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="历史数据" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/temp_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/humi_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/tu_temp_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/tu_humi_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/light_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/co_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+<!--    <com.github.mikephil.charting.charts.BarChart-->
+
+
+
+</LinearLayout>

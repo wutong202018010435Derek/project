@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lynn.base.view.AppTitleLayout
+        android:id="@+id/app_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="关于我们" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="12dp"
+        android:text="       一个基于Android手机的自助旅游系统。它具有在线订票、酒店预订、观看他人旅游策略、分享自己的旅游策略、评价美食等功能。它可以帮助想旅行的人解决一些琐碎的事情，使人们旅行更加方便" />
+
+</LinearLayout>

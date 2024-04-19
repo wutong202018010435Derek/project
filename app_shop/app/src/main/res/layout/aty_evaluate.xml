@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <com.lynn.base.view.AppTitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Evaluate " />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="CONTENT:"></TextView>
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:background="@drawable/shape_dynamic_et_bg"
+            android:hint="Please Input"
+            android:padding="8dp"
+            android:textSize="16sp"></EditText>
+    </LinearLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="12dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginRight="12dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Birthday:"></TextView>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_birthday"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+
+<!--            android:background="@drawable/shape_dynamic_et_bg"-->
+<!--            android:hint="Please Input"-->
+<!--            android:padding="8dp"-->
+<!--            android:textSize="16sp"></EditText>-->
+<!--    </LinearLayout>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="12dp"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginRight="12dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Email:"></TextView>-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_email"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+
+<!--            android:background="@drawable/shape_dynamic_et_bg"-->
+<!--            android:hint="Please Input"-->
+<!--            android:padding="8dp"-->
+<!--            android:textSize="16sp"></EditText>-->
+<!--    </LinearLayout>-->
+
+
+    <Button
+        android:id="@+id/btn_commint"
+        style="@style/shape_btn_bg"
+
+        android:text="Commit">
+
+    </Button>
+
+</LinearLayout>
+
+

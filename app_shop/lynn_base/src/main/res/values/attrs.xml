@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitleLayout">
+        <attr name="root_bg" format="reference" />
+        <attr name="root_bg_color" format="color" />
+        <attr name="is_black" format="boolean" />
+        <attr name="is_show_alpha_bg" format="boolean" />
+        <attr name="alpha_bg" format="reference" />
+        <attr name="alpha_bg_color" format="color" />
+        <attr name="left_icon" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="right_text" format="string" />
+        <attr name="left_text" format="string" />
+        <attr name="right_icon" format="reference" />
+        <attr name="left_icon_visible">
+            <enum name="gone" value="8" />
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="4" />
+        </attr>
+        <attr name="left_tv_visible">
+            <enum name="gone" value="8" />
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="4" />
+        </attr>
+        <attr name="right_icon_visible">
+            <enum name="gone" value="8" />
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="4" />
+        </attr>
+        <attr name="right_tv_visible">
+            <enum name="gone" value="8" />
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="4" />
+        </attr>
+    </declare-styleable>
+
+
+
+
+</resources>

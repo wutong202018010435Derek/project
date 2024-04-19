@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<th:block th:include="include :: header('推荐线路')" />
+	<th:block th:include="include :: select2-css" />
+</head>
+<body>
+    <div class="main-content">
+        <form id="form-user-add" class="form-horizontal">
+<!--            <input name="deptId" type="hidden" id="treeId"/>-->
+            <h4 class="form-header h4">基本信息</h4>
+            <div class="row">
+            	<div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">停车场：</label>
+                        <div class="col-sm-8">
+                            <input name="pName" placeholder="请输入停车场" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">经度：</label>
+                        <div class="col-sm-8">
+                            <input name="pLng" placeholder="请输入经度" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">纬度：</label>
+                        <div class="col-sm-8">
+                            <input name="pLat" placeholder="请输入纬度" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">停车位：</label>
+                        <div class="col-sm-8">
+                            <input name="pLocation" placeholder="请输入停车位名称" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">推荐描述：</label>
+                        <div class="col-sm-8">
+                            <input name="pDesc" placeholder="请输入推荐描述" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">价格：</label>
+                        <div class="col-sm-8">
+                            <input name="pMoney" placeholder="请输入价格" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label is-required">地址：</label>
+                        <div class="col-sm-8">
+                            <input name="pAddress" placeholder="请输入地址" class="form-control" type="text" maxlength="30" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </form>
+    </div>
+      
+    <div class="row">
+        <div class="col-sm-offset-5 col-sm-10">
+            <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
+            <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
+        </div>
+    </div>
+	<th:block th:include="include :: footer" />
+	<th:block th:include="include :: select2-js" />
+	<script>
+	    var prefix = ctx + "system/line";
+	
+
+        
+        function submitHandler() {
+        	var chrtype = [[${#strings.defaultString(@config.getKey('sys.account.chrtype'), 0)}]];
+			var password = $("#password").val();
+	        // if ($.validate.form() && checkpwd(chrtype, password)) {
+	        	var data = $("#form-user-add").serializeArray();
+	        	// var status = $("input[id='status']").is(':checked') == true ? 0 : 1;
+	        	// var roleIds = $.form.selectCheckeds("role");
+	        	// var postIds = $.form.selectSelects("post");
+	        	// data.push({"name": "status", "value": status});
+            data.push({"name": "pType", "value": 1});
+            data.push({"name": "pType", "value": 1});
+	        	// data.push({"name": "roleIds", "value": roleIds});
+	        	// data.push({"name": "postIds", "value": postIds});
+	        	$.operate.saveTab(prefix + "/add", data);
+	        // }
+	    }
+
+		
+
+    </script>
+</body>
+</html>

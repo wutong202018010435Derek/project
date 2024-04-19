@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alert_blue"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:alpha="1"
+        android:background="@color/transparent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Seller Management"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:id="@+id/ll_goods"
+        style="@style/aty_setting_ll"
+        android:background="@color/color_F2F2F2">
+
+
+        <TextView
+            style="@style/aty_setting_tv_left"
+            android:text="Goods Management" />
+
+        <TextView style="@style/aty_setting_weight" />
+
+
+        <ImageView style="@style/aty_setting_right_iv" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_order"
+        style="@style/aty_setting_ll"
+        android:background="@color/color_bde">
+
+
+        <TextView
+            style="@style/aty_setting_tv_left"
+            android:text="Order Management" />
+
+        <TextView style="@style/aty_setting_weight" />
+
+
+        <ImageView style="@style/aty_setting_right_iv" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_exit"
+        style="@style/shape_btn_bg"
+        android:text="Exit Login" />
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ll_tu_temp"-->
+    <!--        style="@style/aty_setting_ll"-->
+    <!--        android:background="@color/color_F2F2F2">-->
+
+
+    <!--        <TextView-->
+    <!--            style="@style/aty_setting_tv_left"-->
+    <!--            android:text="购买建议" />-->
+
+    <!--        <TextView style="@style/aty_setting_weight" />-->
+
+
+    <!--        <ImageView style="@style/aty_setting_right_iv" />-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ll_tu_humi"-->
+    <!--        style="@style/aty_setting_ll"-->
+    <!--        android:background="@color/color_bde">-->
+
+
+    <!--        <TextView-->
+    <!--            style="@style/aty_setting_tv_left"-->
+    <!--            android:text="衣物添加" />-->
+
+    <!--        <TextView style="@style/aty_setting_weight" />-->
+
+
+    <!--        <ImageView style="@style/aty_setting_right_iv" />-->
+
+    <!--    </LinearLayout>-->
+
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ll_light"-->
+    <!--        style="@style/aty_setting_ll"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:background="@color/color_F2F2F2">-->
+
+
+    <!--        <TextView-->
+    <!--            style="@style/aty_setting_tv_left"-->
+    <!--            android:text="光照" />-->
+
+    <!--        <TextView style="@style/aty_setting_weight" />-->
+
+
+    <!--        <ImageView style="@style/aty_setting_right_iv" />-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/ll_co2"-->
+    <!--        style="@style/aty_setting_ll"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:background="@color/color_bde">-->
+
+
+    <!--        <TextView-->
+    <!--            style="@style/aty_setting_tv_left"-->
+    <!--            android:text="二氧化碳设置" />-->
+
+    <!--        <TextView style="@style/aty_setting_weight" />-->
+
+
+    <!--        <ImageView style="@style/aty_setting_right_iv" />-->
+
+    <!--    </LinearLayout>-->
+
+</LinearLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_F2F2F2">
+
+   <com.lynn.base.view.AppTitleLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Add Goods" />
+
+    <LinearLayout style="@style/aty_shop_add_ll"
+        android:background="@drawable/shape_add_bg">
+
+        <TextView
+            style="@style/aty_shop_add_tv"
+            android:text="GoodsName：" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/aty_shop_add_et"
+            android:hint="Please input" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_type"-->
+<!--        style="@style/aty_shop_add_ll"-->
+
+<!--        android:visibility="gone">-->
+
+<!--        <TextView-->
+<!--            style="@style/aty_shop_add_tv"-->
+<!--            android:text="类    型"></TextView>-->
+
+<!--        <androidx.appcompat.widget.AppCompatSpinner-->
+<!--            android:id="@+id/spin_classtype"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+    <LinearLayout style="@style/aty_shop_add_ll"
+        android:background="@drawable/shape_add_bg">
+
+        <TextView
+            style="@style/aty_shop_add_tv"
+            android:text="GoodsPrice：" />
+
+        <EditText
+            android:id="@+id/et_price"
+            style="@style/aty_shop_add_et"
+            android:hint="Please input" />
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/aty_shop_add_ll"
+        android:background="@drawable/shape_add_bg">
+
+        <TextView
+            style="@style/aty_shop_add_tv"
+            android:text="GoodsDesc：" />
+
+        <EditText
+            android:id="@+id/et_desc"
+            style="@style/aty_shop_add_et"
+            android:hint="Please input" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/aty_shop_add_ll"
+        android:background="@drawable/shape_add_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Type:"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/string_type"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:spinnerMode="dropdown"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/aty_shop_add_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/aty_shop_add_tv"
+            android:text="GoodsImg" />
+
+
+        <ImageView
+            android:id="@+id/iv_pic_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/ic_add" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

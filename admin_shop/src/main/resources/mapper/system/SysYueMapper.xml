@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lynn.system.mapper.SysYueMapper">
+
+    <resultMap type="SysBanner" id="SysYueResult">
+        <id property="yId" column="y_id"/>
+        <result property="yParkid" column="y_parkid"/>
+        <result property="yParkname" column="y_parkname"/>
+        <result property="yParklocation" column="y_parklocation"/>
+        <result property="yParkaddress" column="y_parkaddress"/>
+        <result property="yParkprice" column="y_parkprice"/>
+        <result property="yMoney" column="y_money"/>
+        <result property="yDate" column="y_date"/>
+        <result property="yTime" column="y_time"/>
+        <result property="yState" column="y_state"/>
+        <result property="yUserid" column="y_userid"/>
+        <result property="yType" column="y_type"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <insert id="insertData" parameterType="SysBanner">
+        insert into sys_yue(
+        <if test="yParkid != null and yParkid != ''">y_parkid,</if>
+        <if test="yParkname != null and yParkname != ''">y_parkname,</if>
+        <if test="yParklocation != null and yParklocation != ''">y_parklocation,</if>
+        <if test="yParkaddress != null and yParkaddress != ''">y_parkaddress,</if>
+        <if test="yParkprice != null and yParkprice != ''">y_parkprice,</if>
+        <if test="yMoney != null and yMoney != ''">y_money,</if>
+        <if test="yDate != null and yDate != ''">y_date,</if>
+        <if test="yTime != null and yTime != ''">y_time,</if>
+        <if test="yState != null and yState != ''">y_state,</if>
+        <if test="yUserid != null and yUserid != ''">y_userid,</if>
+        <if test="yType != null and yType != ''">y_type,</if>
+        create_time
+        )values(
+        <if test="yParkid != null and yParkid != ''">#{yParkid},</if>
+        <if test="yParkname != null ">#{yParkname},</if>
+        <if test="yParklocation != null and yParklocation != ''">#{yParklocation},</if>
+        <if test="yParkaddress != null and yParkaddress != ''">#{yParkaddress},</if>
+        <if test="yParkprice != null and yParkprice != ''">#{yParkprice},</if>
+        <if test="yMoney != null and yMoney != ''">#{yMoney},</if>
+        <if test="yDate != null and yDate != ''">#{yDate},</if>
+        <if test="yTime != null and yTime != ''">#{yTime},</if>
+        <if test="yState != null and yState != ''">#{yState},</if>
+        <if test="yUserid != null and yUserid != ''">#{yUserid},</if>
+        <if test="yType != null and yType != ''">#{yType},</if>
+        sysdate()
+        )
+    </insert>
+
+
+
+    <sql id="selectDataVo">
+        	select y_id, y_parkid, y_parkname, y_parklocation, y_parkaddress, y_parkprice, y_money,y_date, y_time,y_state,y_userid,y_type,create_time
+        	from sys_yue
+
+	</sql>
+
+    <update id="updateData" parameterType="SysBanner">
+        update sys_yue
+        <set>
+            <if test="yState != null and yState != ''">y_state = #{yState},</if>
+
+        </set>
+        where y_id = #{yId}
+    </update>
+
+
+    <select id="selectDataById" parameterType="SysBanner" resultMap="SysYueResult">
+
+        <include refid="selectDataVo"/>
+        <where>
+            <if test="yId != null and yId != ''">
+                AND y_id = #{yId}
+            </if>
+
+
+        </where>
+
+    </select>
+
+
+    <select id="selectDataByBean" parameterType="SysLine" resultMap="SysYueResult">
+
+        <include refid="selectDataVo"/>
+        <where>
+            <if test="yType != null and yType != ''">
+                AND y_type = #{yType}
+            </if>
+            <if test="yUserid != null and yUserid != ''">
+                AND y_userid = #{yUserid}
+            </if>
+
+        </where>
+
+    </select>
+
+
+
+
+    <select id="selectDataAll" resultMap="SysYueResult">
+        <include refid="selectDataVo"/>
+    </select>
+
+
+    <delete id="deleteByIds" parameterType="String">
+        delete from sys_yue where y_id in
+        <foreach item="yId" collection="array" open="(" separator="," close=")">
+            #{yId}
+        </foreach>
+    </delete>
+
+
+
+
+</mapper>

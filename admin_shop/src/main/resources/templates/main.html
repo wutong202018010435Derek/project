@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('shop')" />
+
+    <style type="text/css">
+
+
+
+        .max-height {
+            height: 450px;
+
+        }
+
+
+    </style>
+</head>
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+
+        <div class="ibox float-e-margins">
+<!--            <div class="ibox-title">-->
+<!--                <h5>当前数据</h5>-->
+
+<!--            </div>-->
+            <div class="ibox-content">
+                <h1>Welcome to the shopping management backend</h1>
+<!--                <div class="max-height" id="echarts-bar-chart"></div>-->
+            </div>
+        </div>
+        <!--        </div>-->
+    </div>
+
+
+
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: echarts-js" />
+<script type="text/javascript">
+    // $(function () {
+    //
+    //
+    //     $.ajax({
+    //         type: "GET",
+    //         url: ctx + "app/getDeviceData/first?dictmqtt=A001",
+    //         // data: data,
+    //         cache: false,
+    //         contentType: false,
+    //         processData: false,
+    //         dataType: 'json',
+    //         success: function (result) {
+    //
+    //             console.log("---成功" + JSON.stringify(result));
+    //             if (result.code == 200)
+    //                 toShowChart(result.data);
+    //
+    //         },
+    //         error: function (error) {
+    //             console.log("---错误" + JSON.stringify(error));
+    //         }
+    //     });
+    //
+    //
+    //
+    //
+    //
+    //
+    // });
+
+
+    function toShowChart(allData) {
+
+        var timeList = [];
+        var tempList = [];
+
+
+        tempList.push(allData.dataWendu);
+        tempList.push(allData.dataShidu);
+        tempList.push(allData.turangTemp);
+        tempList.push(allData.turangShidu);
+
+        tempList.push(allData.dataCo);
+        tempList.push(allData.dataLight);
+        // tempList.push(allData.dataPh);
+
+
+
+        var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+        var baroption = {
+            color: ['#FF3333', '#FF6633', '#FF9933', '#FFCC33','#00FFFF', '#0000FF'],
+            title : {
+                text: '当前数据'
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            // legend: {
+            //     data:['蒸发量','降水量']
+            // },
+            grid:{
+                x:30,
+                x2:40,
+                y2:24
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['温度','湿度','土壤温度','土壤湿度','二氧化碳','光照强度']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'数值',
+                    type:'bar',
+                    data:tempList,
+                    itemStyle: {
+                        // 颜色按照数值从浅到深
+
+                        normal: {
+                            label: {
+                                show: true,
+                                position: 'top',
+                                textStyle: {
+                                    color: 'black',
+                                    fontSize: 16
+                                }
+                            },
+                            color: function(params) {
+                                var colorList = ['#FF3333', '#FF6633', '#FF9933', '#FFCC33','#00FFFF', '#0000FF'];
+                                return colorList[params.dataIndex]
+                            }
+                        }
+                    }
+
+                }
+            ]
+        };
+        barChart.setOption(baroption);
+
+        window.onresize = barChart.resize;
+
+
+    }
+</script>
+</body>
+</html>
+
+
+

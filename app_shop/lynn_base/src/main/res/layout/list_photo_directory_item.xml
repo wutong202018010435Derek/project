@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_photo_directory_cover"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tv_photo_directory_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:textColor="@color/color_80_black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_photo_directory_num"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="17dp"
+        android:layout_weight="1"
+        android:drawableRight="@mipmap/icon_arrow_right"
+        android:gravity="right"
+        android:minWidth="100dp"
+        android:textColor="@color/color_80_black"
+        android:textSize="12sp" />
+</LinearLayout>
+
+
